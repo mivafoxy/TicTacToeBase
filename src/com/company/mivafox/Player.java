@@ -3,13 +3,11 @@ package com.company.mivafox;
 import java.util.Scanner;
 
 public class Player {
-    Scanner scanner = new Scanner(System.in);
+    int x = 0;
+    int y = 0;
     char chip;
     Player(char chip) {
         this.chip = chip;
     }
-    public  int useInput() {
-        int x = scanner.nextInt() - 1;
-        return x;
-    }
+
 }

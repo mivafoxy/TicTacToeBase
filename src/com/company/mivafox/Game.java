@@ -8,23 +8,27 @@ public class Game {
     char[][] chars = new char[SIZE][SIZE];
     boolean isFalse = false;
     char empty = ' ';
-    char[] chip = {'X', 'O', 'V'};
+    char[] chip = {'X', 'O', 'V', 'I'};
 
     public void startGame() {
         Player player1 = new Player(choiceChip());
-        Player player2 = new Player(choiceChip());
+        PlayerII computer = new PlayerII('I');
         chars = initChar();
         while (!isFalse) {
             printMap();
-            chars[player1.useInput()][player1.useInput()] = player1.chip;
-            win(chars, player1.chip);
-            printMap();
-            chars[player2.useInput()][player2.useInput()] = player2.chip;
-            win(chars,player2.chip);
-            printMap();
+            System.out.println("Введите координаты ячейки x, y.");
+            player1.x = scanner.nextInt() - 1;
+            player1.y = scanner.nextInt() - 1;
+            if(fullChars(player1.x, player1.y)) {
+                chars[player1.x][player1.y] = player1.chip;
+            }
+              if (win(chars, player1.chip)) System.out.println("Игрок победил!");
+                printMap();
+            }
+        computer.computerInput();
         }
 
-    }
+
 
     public char choiceChip() {
         System.out.println("Выберите фишку: 1 - 'X', 2 - 'O', 3 - 'V' ");
@@ -98,5 +102,12 @@ public class Game {
             }
         }
         return isWin;
+    }
+    public boolean fullChars(int x, int y) {
+        if(x > 0 && x <= SIZE && y > 0 && y <= SIZE && chars[x][y] == empty ) {
+            return true;
+        }
+        else return false;
+
     }
 }
