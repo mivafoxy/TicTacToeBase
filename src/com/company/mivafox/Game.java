@@ -6,10 +6,10 @@ import java.util.Scanner;
 public class Game {
     Random random = new Random();
     Scanner scanner = new Scanner(System.in);
-    public static final int SIZE = 3;
+    public static final int SIZE = 5;
     char[][] chars = new char[SIZE][SIZE];
-    boolean isFalse = false;
-    char empty = ' ';
+    boolean isFalse;
+   static final char EMPTY = '.';
     char[] chip = {'X', 'O', 'V'};
 
     public void startGame() {
@@ -18,33 +18,30 @@ public class Game {
         chars = initChar();
         while (!isFalse) {
             printMap();
-            System.out.println("Введите координаты ячейки x, y.");
             do {
+                System.out.println("Введите координаты ячейки x, y.");
                 player1.x = scanner.nextInt() - 1;
                 player1.y = scanner.nextInt() - 1;
-                chars[player1.x][player1.y] = player1.chip;
-            }while (fullChars(player1.x, player1.y));
-
-              if (win(chars, player1.chip)) {
-                  System.out.println("Игрок победил!");
-                  break;
-              }
-                printMap();
-              do {
-                  computer.x = random.nextInt(SIZE);
-                  computer.y = random.nextInt(SIZE);
-                  chars[computer.x][computer.y] = computer.chip;
-              }
-              while (fullChars(computer.x, computer.y));
-                if(win(chars, computer.chip)) {
-                    System.out.println("Компьютер победил");
-                    break;
-                }
-                printMap();
+            } while (!fullChars(player1.x, player1.y));
+            chars[player1.x][player1.y] = player1.chip;
+            if (win(chars, player1.chip)) {
+                System.out.println("Игрок победил!");
+                break;
             }
+            printMap();
+            do {
+                computer.x = random.nextInt(SIZE);
+                computer.y = random.nextInt(SIZE);
             }
-
-
+            while (!fullChars(computer.x, computer.y));
+            chars[computer.x][computer.y] = computer.chip;
+            if (win(chars, computer.chip)) {
+                System.out.println("Компьютер победил");
+                break;
+            }
+            printMap();
+        }
+    }
 
 
     public char choiceChip() {
@@ -57,7 +54,7 @@ public class Game {
     public char[][] initChar() {
         for (int x = 0; x < chars.length; x++) {
             for (int y = 0; y < chars[x].length; y++) {
-                chars[x][y] = empty;
+                chars[x][y] = EMPTY;
             }
         }
         return chars;
@@ -121,12 +118,13 @@ public class Game {
         }
         return isWin;
     }
-    public boolean fullChars(int x, int y) {
-        if(x < 0 || x >= SIZE || y < 0 && y >= SIZE) {
-            return false;
-        }
-        else if (chars[x][y] == empty) return true;
-        else return false;
 
+    public boolean fullChars(int x, int y) {
+        if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) {
+            return false;
+        }  if (chars[x][y] == EMPTY) {
+            return true;
+        } else
+            return false;
     }
 }
