@@ -122,9 +122,10 @@ public class Game {
         return isWin;
     }
     public boolean fullChars(int x, int y) {
-        if(x >= 0 && x < SIZE && y >= 0 && y < SIZE && chars[x][y] == empty ) {
-            return true;
+        if(x < 0 || x >= SIZE || y < 0 && y >= SIZE) {
+            return false;
         }
+        else if (chars[x][y] == empty) return true;
         else return false;
 
     }
