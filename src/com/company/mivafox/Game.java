@@ -19,10 +19,6 @@ public class Game {
         chars = initChar();
         while (!isFalse) {
             printMap();
-            if(fullChars(countMove)) {
-                System.out.println("Ничья");
-                break;
-            }
             do {
                 System.out.println("Введите координаты ячейки x, y.");
                 player1.x = scanner.nextInt() - 1;
@@ -30,6 +26,10 @@ public class Game {
             } while (!playerMove(player1.x, player1.y));
             chars[player1.x][player1.y] = player1.chip;
             countMove++;
+            if(fullChars(countMove)) {
+                System.out.println("Ничья");
+                break;
+            }
             if (win(chars, player1.chip)) {
                 System.out.println("Игрок победил!");
                 break;
@@ -42,6 +42,10 @@ public class Game {
             while (!playerMove(computer.x, computer.y));
             chars[computer.x][computer.y] = computer.chip;
             countMove++;
+            if(fullChars(countMove)) {
+                System.out.println("Ничья");
+                break;
+            }
             if (win(chars, computer.chip)) {
                 System.out.println("Компьютер победил");
                 break;
