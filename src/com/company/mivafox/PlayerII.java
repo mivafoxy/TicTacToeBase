@@ -9,12 +9,11 @@ public class PlayerII extends Player {
     }
     public  void inputPlayer() {
         do {
-
             x = random.nextInt(Game.SIZE);
             y = random.nextInt(Game.SIZE);
         } while (!playerMove(x, y));
         Game.chars[x][y] = this.chip;
-        Game.countMove++;
+       Game.countMove++;
 
         if (win(Game.chars, chip)) {
             System.out.println("Компьютер победил");

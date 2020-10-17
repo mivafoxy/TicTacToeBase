@@ -18,21 +18,18 @@ public class Player {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public  void inputPlayer() {
+    public void inputPlayer() {
+        System.out.println("Ход игрока" + this.getName());
            do {
                 System.out.println("Введите координаты ячейки x, y.");
                 x = scanner.nextInt() - 1;
                 y = scanner.nextInt() - 1;
             } while (!playerMove(x, y));
             Game.chars[x][y] = this.chip;
-            Game.countMove++;
+           Game.countMove++;
 
             if (win(Game.chars, chip)) {
-                System.out.println("Игрок победил!");
+                System.out.println(getName() + "победил!");
                 Game.isFalse = true;
             }
             Game.printMap();
