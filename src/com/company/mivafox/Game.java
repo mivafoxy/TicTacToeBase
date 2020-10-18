@@ -6,19 +6,18 @@ import java.util.Scanner;
 
 public class Game {
     Scanner scanner = new Scanner(System.in);
-    public static final int SIZE = 5;
+    public static final int SIZE = 3;
     static char[][] chars = new char[SIZE][SIZE];
     static boolean isFalse;
     static final char EMPTY = '.';
     char[] chip = {'X', 'O', 'V'};
     static int countMove = 0;
-
     String name;
 
     public void startGame() {
-        Player player1 = new Player(choiceChip(), setName());
-        Player player2 = new Player(choiceChip(), setName());
-        Player player3 = new Player(choiceChip(), setName());
+        Player player1 = new Player(choiceChip(), name);
+        Player player2 = new Player(choiceChip(), name);
+        Player player3 = new Player(choiceChip(), name);
         PlayerII computer = new PlayerII('I', "Компьютер");
         chars = Game.initChar();
         while (!isFalse) {
@@ -75,10 +74,5 @@ public class Game {
             }
             else return false;
         }
-        public String setName() {
-        name = scanner.nextLine();
-        return name;
-        }
-
     }
 

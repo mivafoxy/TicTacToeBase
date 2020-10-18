@@ -11,7 +11,8 @@ public class Player {
 
     Player(char chip, String name) {
         this.name = name;
-        this.chip = chip;
+       this.chip = chip;
+       this.name = scanner.nextLine();
     }
 
     public String getName() {
@@ -19,7 +20,7 @@ public class Player {
     }
 
     public void inputPlayer() {
-        System.out.println("Ход игрока" + this.getName());
+        System.out.println("Ход игрока " + this.getName());
            do {
                 System.out.println("Введите координаты ячейки x, y.");
                 x = scanner.nextInt() - 1;
@@ -29,7 +30,7 @@ public class Player {
            Game.countMove++;
 
             if (win(Game.chars, chip)) {
-                System.out.println(getName() + "победил!");
+                System.out.println(getName() + " победил!");
                 Game.isFalse = true;
             }
             Game.printMap();
